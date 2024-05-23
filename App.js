@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>pipeFixer </Text>
+      <Text>Servicio de control de averías del sistema de drernaje </Text>
+      <Text>conectar la base de datos de firebase</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -18,3 +20,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
