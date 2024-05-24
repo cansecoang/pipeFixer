@@ -19,7 +19,38 @@ const styles = StyleSheet.create({
   },
 });
 
+
+import { login, logout } from "./auth.js";
 const buttonLogin = document.querySelector("#button-login");
-buttonLogin.addEventListener("click", e => {
+const buttonLogout = document.querySelector("#button-logout");
+const todoForm = document.querySelector("#todo-form");
+let currentUser;
+firebase.auth().onAuthStateChanged( user => {
+     if (user){
+      currentUser = user;
+      console.log("Usuario logeado", currentUser.displayName);
+     Init();
+    }else{
+        console.log("No hay usuario logeado");
+     }
+});
+
+
+buttonLogin.addEventListener("click", async e => {
+  try {
+    currentUser = await login();
+  } catch (error) {
+    
+  }
+
+});
+
+buttonLogout.addEventListener("click",  e => {
   
-})
+  logout();
+});
+
+function init(){
+  buttonLogin.classList.add('hidden');
+  buttonLogin.classList.remove('hidden');
+}
