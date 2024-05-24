@@ -18,3 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const buttonLogin = document.querySelector("#button-login");
+buttonLogin.addEventListener("click", e => {
+  
+})
