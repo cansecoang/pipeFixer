@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { View, Text, Button, Alert, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
@@ -133,15 +134,62 @@ function LoginScreen() {
 }
 
 const Stack = createNativeStackNavigator();
+=======
+// App.js
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, Button, View } from 'react-native';
+import { auth } from './firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { StatusBar } from 'expo-status-bar';
+>>>>>>> 39a2e203378811388d9b708bbb5f886b2c4910c6
 
 export default function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleRegister = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('User registered:', user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('Error registering user:', errorCode, errorMessage);
+      });
+  };
+
   return (
+<<<<<<< HEAD
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+=======
+    <View style={styles.container}>
+      <Text style={styles.title}>Register</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <Button title="Register" onPress={handleRegister} />
+      <StatusBar style="auto" />
+    </View>
+>>>>>>> 39a2e203378811388d9b708bbb5f886b2c4910c6
   );
 }
 
@@ -151,6 +199,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 10,
+    width: '100%',
   },
   image: {
     width: '100%',
@@ -219,3 +280,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
